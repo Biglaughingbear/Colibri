@@ -22,9 +22,8 @@ namespace Colibri
                 Microsoft.Office.Interop.Excel._Worksheet resultSheet=null;
             int count=1;
             while (File.Exists(resultLoc+"\\Result"+count+".xlsx"))
-            {
                 count++;
-            }
+
             try
             {
                 transXL = new Microsoft.Office.Interop.Excel.Application();
@@ -136,9 +135,7 @@ namespace Colibri
                 orderItemSize = FindSize(Convert.ToString(orderOBJ[i, orderNamePos]));
 
                if (!schools.ContainsKey(schoolName))
-                {
                     schools.Add(schoolName, new School(schoolName));
-                }
                 
                 if (orderItemSize.Equals("Set"))
                 {
@@ -174,9 +171,7 @@ namespace Colibri
                     foreach (string currSch in schools.Keys)
                     {
                         if (schools[currSch].HasOrder(orderNum))
-                        {
                             schools[currSch].AddMoney(orderNum, net, fee, amount);
-                        }
                     }
                 }
                 catch
@@ -212,34 +207,22 @@ namespace Colibri
         {
             string result = "Unknown Size";
             orderName = orderName.ToLower();
+
             if (orderName.Contains("large"))
-            {
                 result = "Large";
-            }
             else if (orderName.Contains("small"))
-            {
                 result = "Small";
-            }
             else if (orderName.Contains("set"))
-            {
                 result = "Set";
-            }
             else if (orderName.Contains("regular"))
-            {
                 result = "Regular";
-            }
             else if (orderName.Contains("organic"))
-            {
                 result = "Organic";
-            }
             else if (orderName.Contains("wide"))
-            {
                 result = "Wide";
-            }
             else if (orderName.Contains("straw"))
-            {
                 result = "Straw";
-            }
+
             return result;
         }
 
@@ -250,9 +233,7 @@ namespace Colibri
             foreach (char letter in input)
             {
                 if (((letter >= '0') && (letter <= '9'))||(letter=='.'))
-                {
                     result += letter;
-                }
             }
             return result;
         }
@@ -261,6 +242,7 @@ namespace Colibri
         {
             int itemTotalStart = 20;
             int itemWrite = 5;
+
             resultSheet.Cells[1, itemTotalStart] = "Total Small";
             resultSheet.Cells[1, itemTotalStart + 1] = "Total Regular";
             resultSheet.Cells[1, itemTotalStart + 2] = "Total Large";
@@ -305,9 +287,7 @@ namespace Colibri
             foreach (string name in itemTotal.Keys)
             {
                 if (name.Contains(target))
-                {
                     total += itemTotal[name][0];
-                }
             }
             return total;
         }
