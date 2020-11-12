@@ -1,0 +1,15 @@
+C:\Users\boone\source\repos\Colibri\Colibri\bin\Debug\Colibri.exe.config
+C:\Users\boone\source\repos\Colibri\Colibri\bin\Debug\Colibri.exe
+C:\Users\boone\source\repos\Colibri\Colibri\bin\Debug\Colibri.pdb
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri.csprojAssemblyReference.cache
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\MainWindow.g.cs
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\App.g.cs
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri_MarkupCompile.cache
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri_MarkupCompile.lref
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\MainWindow.baml
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri.g.resources
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri.Properties.Resources.resources
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri.csproj.GenerateResource.cache
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri.csproj.CoreCompileInputs.cache
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri.exe
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Debug\Colibri.pdb
