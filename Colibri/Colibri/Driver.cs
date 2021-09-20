@@ -136,24 +136,30 @@ namespace Colibri
 
                if (!schools.ContainsKey(schoolName))
                     schools.Add(schoolName, new School(schoolName));
-                
-                if (orderItemSize.Equals("Set"))
+
+                if (orderName.Contains("Organic"))
+                {
+                    schools[schoolName].AddItem(Convert.ToString(orderOBJ[i, orderNamePos]) , orderSKU, orderQuant, orderItemSize);
+                    schools[schoolName].AddOrderNum(orderNum);
+                    AddQuant(itemTotal, Convert.ToString(orderOBJ[i, orderNamePos]), string.Empty, orderSKU, orderQuant);
+                }
+                else if (orderItemSize.Equals("Set"))
                 {
                     int last3 = orderSKU-8000;
                     schools[schoolName].AddItem(orderName + " " + "Small", last3+1000, orderQuant,  "Small");
                     schools[schoolName].AddItem(orderName + " " + "Large", last3+2000, orderQuant,  "Large");
-                    schools[schoolName].AddItem(orderName + " " + "Wide", last3+9000, orderQuant,  "Wide");
+                    schools[schoolName].AddItem(orderName + " " + "Medium", last3+9000, orderQuant,  "Medium");
                     schools[schoolName].AddOrderNum(orderNum);
 
                     AddQuant(itemTotal, orderName, "Small", last3 + 1000, orderQuant);
                     AddQuant(itemTotal, orderName, "Large", last3 + 2000, orderQuant);
-                    AddQuant(itemTotal, orderName, "Wide", last3 + 9000, orderQuant);
+                    AddQuant(itemTotal, orderName, "Medium", last3 + 9000, orderQuant);
                 }
                 else
                 {
                     schools[schoolName].AddItem(orderName + " " + orderItemSize, orderSKU, orderQuant, orderItemSize);
                     schools[schoolName].AddOrderNum(orderNum);
-                    AddQuant(itemTotal,orderName,orderItemSize,orderSKU,orderQuant);
+                    AddQuant(itemTotal, orderName, orderItemSize, orderSKU, orderQuant);
                 }
             }
             orderNumberPos = 3;
@@ -193,8 +199,10 @@ namespace Colibri
             string chopName = fullName;
             chopName =chopName.Replace(" Large","");
             chopName = chopName.Replace(" Regular", "");
-            chopName = chopName.Replace(" Wide", "");
+            chopName = chopName.Replace(" Medium", "");
             chopName = chopName.Replace(" Set", "");
+            chopName = chopName.Replace(" Mini", "");
+            chopName = chopName.Replace(" Medium", "");
             chopName = chopName.Replace(" Snack", "");
             chopName = chopName.Replace(" Reusable", "");
             chopName = chopName.Replace(" Small", "");
@@ -211,17 +219,23 @@ namespace Colibri
             if (orderName.Contains("large"))
                 result = "Large";
             else if (orderName.Contains("small"))
-                result = "Small";
+                result = "Small";            
             else if (orderName.Contains("set"))
                 result = "Set";
             else if (orderName.Contains("regular"))
                 result = "Regular";
             else if (orderName.Contains("organic"))
                 result = "Organic";
-            else if (orderName.Contains("wide"))
-                result = "Wide";
             else if (orderName.Contains("straw"))
                 result = "Straw";
+            else if (orderName.Contains("mini"))
+                result = "Mini";
+            else if (orderName.Contains("medium"))
+                result = "Medium";
+            else
+            {
+
+            }
 
             return result;
         }
@@ -246,15 +260,18 @@ namespace Colibri
             resultSheet.Cells[1, itemTotalStart] = "Total Small";
             resultSheet.Cells[1, itemTotalStart + 1] = "Total Regular";
             resultSheet.Cells[1, itemTotalStart + 2] = "Total Large";
-            resultSheet.Cells[1, itemTotalStart + 3] = "Total Wide";
-            resultSheet.Cells[1, itemTotalStart + 4] = "Total Wash Clothes";
-            resultSheet.Cells[1, itemTotalStart + 4] = "Total Straws";
+            resultSheet.Cells[1, itemTotalStart + 3] = "Total Medium";
+            resultSheet.Cells[1, itemTotalStart + 4] = "Total Mini";
+            resultSheet.Cells[1, itemTotalStart + 5] = "Total Wash Clothes";
+            resultSheet.Cells[1, itemTotalStart + 6] = "Total Straws";
+
             resultSheet.Cells[2, itemTotalStart] = GetItemTotal(itemTotal,"Small");
             resultSheet.Cells[2, itemTotalStart + 1] = GetItemTotal(itemTotal,"Regular");
             resultSheet.Cells[2, itemTotalStart + 2] = GetItemTotal(itemTotal, "Large");
-            resultSheet.Cells[2, itemTotalStart + 3] = GetItemTotal(itemTotal, "Wide");
-            resultSheet.Cells[2, itemTotalStart + 4] = GetItemTotal(itemTotal, "Wash");
-            resultSheet.Cells[2, itemTotalStart + 4] = GetItemTotal(itemTotal, "Straw");
+            resultSheet.Cells[2, itemTotalStart + 3] = GetItemTotal(itemTotal, "Medium");
+            resultSheet.Cells[2, itemTotalStart + 4] = GetItemTotal(itemTotal, "Mini");
+            resultSheet.Cells[2, itemTotalStart + 5] = GetItemTotal(itemTotal, "Organic");
+            resultSheet.Cells[2, itemTotalStart + 6] = GetItemTotal(itemTotal, "Straw");
 
             resultSheet.Cells[itemWrite, itemTotalStart] = "Item Name";
             resultSheet.Cells[itemWrite, itemTotalStart + 1] = "Item Number";
@@ -337,7 +354,7 @@ namespace Colibri
                 resultSheet.Cells[totalWrite, totalsColStart+2] = mon[1];
                 resultSheet.Cells[totalWrite, totalsColStart + 3] = mon[2];
                 resultSheet.Cells[totalWrite, totalsColStart + 4] = mon[3];
-                resultSheet.Range[resultSheet.Cells[totalWrite, totalsColStart], resultSheet.Cells[totalWrite, totalsColStart + 4]].Interior.Color= XlRgbColor.rgbLightGrey;
+                resultSheet.Range[resultSheet.Cells[totalWrite, totalsColStart], resultSheet.Cells[totalWrite, totalsColStart + 4]].Interior.Color=Colours[schoolColourIndex];
                 totalWrite++;
 
                 resultSheet.Cells[moneyWrite, orderTotalsStart] = schoolName;

@@ -16,3 +16,4 @@ C:\Users\boone\source\repos\Colibri\Colibri\bin\Release\Colibri.exe.manifest
 C:\Users\boone\source\repos\Colibri\Colibri\bin\Release\Colibri.application
 C:\Users\boone\source\repos\Colibri\Colibri\obj\Release\Colibri.exe.manifest
 C:\Users\boone\source\repos\Colibri\Colibri\obj\Release\Colibri.application
+C:\Users\boone\source\repos\Colibri\Colibri\obj\Release\Colibri.csprojAssemblyReference.cache
